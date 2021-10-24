@@ -3,8 +3,6 @@ import 'dart:math';
 
 import 'package:path/path.dart' as p;
 
-// Some globals I may want to experiment with
-
 class Utls {
   static final Random _random = Random();
 
