@@ -84,7 +84,7 @@ packages:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.2"
+    version: "8.1.3"
   charcode:
     dependency: transitive
     description:
@@ -141,6 +141,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  dfc_lints:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: baba09b073254410ba09fa9b42e69fa0f3a5a4da
+      url: "git@github.com:sgehrman/dfc_lints"
+    source: git
+    version: "1.0.5"
   file:
     dependency: transitive
     description:
@@ -218,13 +227,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.1"
-  lint:
-    dependency: "direct dev"
+  lints:
+    dependency: transitive
     description:
-      name: lint
+      name: lints
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "1.0.1"
   logging:
     dependency: transitive
     description:
