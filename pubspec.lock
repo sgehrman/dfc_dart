@@ -146,7 +146,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: baba09b073254410ba09fa9b42e69fa0f3a5a4da
+      resolved-ref: f4e82777d80eb2e3aaf5ff6e14ffd90a87f39f83
       url: "git@github.com:sgehrman/dfc_lints"
     source: git
     version: "1.0.5"
@@ -164,6 +164,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  flutter_lints:
+    dependency: transitive
+    description:
+      name: flutter_lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   frontend_server_client:
     dependency: transitive
     description:
