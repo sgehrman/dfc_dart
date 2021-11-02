@@ -147,7 +147,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: b702d0be394eddffad5710749032f5717c67dff0
-      url: "git@github.com:sgehrman/dfc_lints"
+      url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
   file:
