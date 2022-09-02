@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class StrUtls {
-  static String printMap(Map map) {
+  static String printMap(Map<dynamic, dynamic> map) {
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
     final String prettyprint = encoder.convert(map);
 
@@ -10,7 +10,7 @@ class StrUtls {
     return prettyprint;
   }
 
-  static String printList(List<Map> list) {
+  static String printList(List<Map<dynamic, dynamic>> list) {
     const JsonEncoder encoder = JsonEncoder.withIndent('  ');
     final String prettyprint = encoder.convert(list);
 

@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "43.0.0"
+    version: "46.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.1"
+    version: "4.6.0"
   analyzer_plugin:
     dependency: transitive
     description:
@@ -77,7 +77,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.17.0"
+    version: "4.17.1"
   dart_style:
     dependency: transitive
     description:
@@ -90,7 +90,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b0299efb1aded3e7a7965c7bce94df14b4a73248
+      resolved-ref: b58d3d543419bf7fb6e10e497a2b296d077eae6e
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
@@ -100,7 +100,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.2"
+    version: "6.1.4"
   glob:
     dependency: transitive
     description:
