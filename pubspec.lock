@@ -77,7 +77,14 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.1"
+    version: "5.4.0"
+  dart_code_metrics_presets:
+    dependency: transitive
+    description:
+      name: dart_code_metrics_presets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   dart_style:
     dependency: transitive
     description:
@@ -90,7 +97,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2743a7ff92cf4da15e1945904dccb65bc7eb59ce"
+      resolved-ref: "095e20f7ec56b4b660406ef371f29aea17e3f6e3"
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
