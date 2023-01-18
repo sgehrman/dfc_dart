@@ -97,7 +97,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: ca999a8f2b3e2645afe79a672471c69c79527894
+      resolved-ref: "16b6b57dde40920bcfd402057b65bf1b870c04b6"
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
