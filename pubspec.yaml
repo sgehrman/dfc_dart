@@ -8,6 +8,7 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
+  mime: ^1.0.4
   path: ^1.8.2
 
 dev_dependencies:
