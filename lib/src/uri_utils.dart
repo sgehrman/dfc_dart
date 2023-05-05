@@ -202,8 +202,23 @@ class UriUtils {
     // example-100x100@2x.jpg
     // example-100w.jpg
     // example_1920x1200.jpg
+    // example_yt_1200.jpg
+
+    // don't get _l5mhbqwka2f91, look for letter vs digit counts
+    // also get query param width=
+    // example_l5mhbqwka2f91.png?width=256&v=enabled&s=5a518842611e975d1c59e6548ce545625a8c5ea4
 
     try {
+      // check for any parameters
+      if (uri.queryParameters.isNotEmpty) {
+        final w = uri.queryParameters['width'] as int? ?? 0;
+        final h = uri.queryParameters['height'] as int? ?? 0;
+
+        if (w != 0 || h != 0) {
+          return ImageSize(w, h);
+        }
+      }
+
       if (uri.pathSegments.isNotEmpty) {
         final name = uri.pathSegments.last.toLowerCase();
         final len = name.length;
@@ -232,12 +247,24 @@ class UriUtils {
               } else {
                 // 700w ?
                 final digitStr = StrUtls.digitsOnly(sizeText);
+                final lettersStr = StrUtls.lettersOnly(sizeText);
 
-                if (digitStr.isNotEmpty) {}
-                final int? width = int.tryParse(digitStr);
+                if (digitStr.isNotEmpty && digitStr.length <= 4) {
+                  final int? width = int.tryParse(digitStr);
 
-                if (width != null) {
-                  return ImageSize(width, 0);
+                  if (width != null) {
+                    if (lettersStr.isEmpty) {
+                      return ImageSize(width, width);
+                    }
+
+                    // if more letters than digits, that would be weird?
+                    // assuming we got junk like _2klj3l3j23j333j
+                    if (lettersStr.length > 2) {
+                      return ImageSize.zero;
+                    }
+
+                    return ImageSize(width, 0);
+                  }
                 }
               }
             }

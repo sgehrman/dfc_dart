@@ -59,6 +59,23 @@ class StrUtls {
     return '';
   }
 
+  static String lettersOnly(String str) {
+    final List<int> letters = [];
+
+    final chars = str.codeUnits;
+    for (final c in chars) {
+      if (isLetter(c)) {
+        letters.add(c);
+      }
+    }
+
+    if (letters.isNotEmpty) {
+      return String.fromCharCodes(letters);
+    }
+
+    return '';
+  }
+
   static bool isEOL(int c) {
     return c == 0x0D || c == 0x0A;
   }
