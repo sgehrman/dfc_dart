@@ -282,6 +282,8 @@ class UriUtils {
                           // https://sp.rmbl.ws/s8/1/6/1/M/A/61MAj.0kob-small-SYSTEM-UPDATE-SHOW-81.jpg
 
                           return ImageSize(width, width);
+                        } else {
+                          return ImageSize.zero;
                         }
                       }
 
