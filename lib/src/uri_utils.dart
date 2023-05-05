@@ -211,8 +211,18 @@ class UriUtils {
     try {
       // check for any parameters
       if (uri.queryParameters.isNotEmpty) {
-        final w = uri.queryParameters['width'] as int? ?? 0;
-        final h = uri.queryParameters['height'] as int? ?? 0;
+        final wStr = uri.queryParameters['width'];
+        final hStr = uri.queryParameters['height'];
+
+        int w = 0;
+        int h = 0;
+
+        if (wStr != null) {
+          w = int.tryParse(wStr) ?? 0;
+        }
+        if (hStr != null) {
+          h = int.tryParse(hStr) ?? 0;
+        }
 
         if (w != 0 || h != 0) {
           return ImageSize(w, h);
