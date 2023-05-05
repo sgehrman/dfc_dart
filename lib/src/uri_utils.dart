@@ -1,4 +1,18 @@
+import 'package:dfc_dart/src/string_utils.dart';
 import 'package:mime/mime.dart';
+
+// Size is in Flutter, not dart, so we use ImageSize
+class ImageSize {
+  const ImageSize(this.width, this.height);
+  const ImageSize.zero()
+      : height = 0,
+        width = 0;
+
+  final int width;
+  final int height;
+}
+
+// =========================================================
 
 class UriUtils {
   UriUtils._();
@@ -179,5 +193,59 @@ class UriUtils {
     }
 
     return null;
+  }
+
+  static ImageSize imageSizeFromUri(Uri uri) {
+    // example-100x100.jpg
+    // example-100x100@2x.jpg
+    // example-100w.jpg
+    // example_1920x1200.jpg
+
+    try {
+      if (uri.pathSegments.isNotEmpty) {
+        final name = uri.pathSegments.last.toLowerCase();
+        final len = name.length;
+
+        int markerIndex = name.lastIndexOf('-');
+        if (markerIndex == -1) {
+          markerIndex = name.lastIndexOf('_');
+        }
+
+        if (markerIndex != -1 && markerIndex < len) {
+          final extIndex = name.lastIndexOf('.');
+
+          if (extIndex != -1 && extIndex < len && extIndex > markerIndex) {
+            final sizeText = name.substring(markerIndex + 1, extIndex);
+
+            if (sizeText.isNotEmpty) {
+              // 100x200x
+              final sizes = sizeText.split('x');
+              if (sizes.length == 2) {
+                final int? width = int.tryParse(sizes.first);
+                final int? height = int.tryParse(sizes.last);
+
+                if (width != null && height != null) {
+                  return ImageSize(width, height);
+                }
+              } else {
+                // 700w ?
+                final digitStr = StrUtls.digitsOnly(sizeText);
+
+                if (digitStr.isNotEmpty) {}
+                final int? width = int.tryParse(digitStr);
+
+                if (width != null) {
+                  return ImageSize(width, 0);
+                }
+              }
+            }
+          }
+        }
+      }
+    } catch (err) {
+      print(err);
+    }
+
+    return const ImageSize(0, 0);
   }
 }
