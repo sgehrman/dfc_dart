@@ -59,6 +59,15 @@ class StrUtls {
     return '';
   }
 
+  static bool firstIsDigit(String str) {
+    final chars = str.codeUnits;
+    if (chars.isNotEmpty) {
+      return isDigit(chars.first);
+    }
+
+    return false;
+  }
+
   static String lettersOnly(String str) {
     final List<int> letters = [];
 

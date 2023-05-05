@@ -208,6 +208,14 @@ class UriUtils {
     // also get query param width=
     // example_l5mhbqwka2f91.png?width=256&v=enabled&s=5a518842611e975d1c59e6548ce545625a8c5ea4
 
+    // problem cases? check for multiple -?
+    // https://sp.rmbl.ws/s8/1/4/H/2/A/4H2Aj.0kob-small-May-4-2023.jpg
+
+    // don't start with letter
+    // favicon_v4.png
+
+    // https://sp.rmbl.ws/s8/1/6/1/M/A/61MAj.0kob-small-SYSTEM-UPDATE-SHOW-81.jpg
+
     try {
       // check for any parameters
       if (uri.queryParameters.isNotEmpty) {
@@ -232,10 +240,12 @@ class UriUtils {
       if (uri.pathSegments.isNotEmpty) {
         final name = uri.pathSegments.last.toLowerCase();
         final len = name.length;
+        bool isUnderscore = false;
 
         int markerIndex = name.lastIndexOf('-');
         if (markerIndex == -1) {
           markerIndex = name.lastIndexOf('_');
+          isUnderscore = true;
         }
 
         if (markerIndex != -1 && markerIndex < len) {
@@ -255,25 +265,34 @@ class UriUtils {
                   return ImageSize(width, height);
                 }
               } else {
-                // 700w ?
-                final digitStr = StrUtls.digitsOnly(sizeText);
-                final lettersStr = StrUtls.lettersOnly(sizeText);
+                if (StrUtls.firstIsDigit(sizeText)) {
+                  // 700w ?
+                  final digitStr = StrUtls.digitsOnly(sizeText);
+                  final lettersStr = StrUtls.lettersOnly(sizeText);
 
-                if (digitStr.isNotEmpty && digitStr.length <= 4) {
-                  final int? width = int.tryParse(digitStr);
+                  if (digitStr.isNotEmpty && digitStr.length <= 4) {
+                    final int? width = int.tryParse(digitStr);
 
-                  if (width != null) {
-                    if (lettersStr.isEmpty) {
-                      return ImageSize(width, width);
+                    if (width != null) {
+                      if (lettersStr.isEmpty) {
+                        if (isUnderscore) {
+                          // rumble had a bunch of false positives, but youtube seems to be ok
+                          // example_yt_1200.jpg
+                          // https://sp.rmbl.ws/s8/1/4/H/2/A/4H2Aj.0kob-small-May-4-2023.jpg
+                          // https://sp.rmbl.ws/s8/1/6/1/M/A/61MAj.0kob-small-SYSTEM-UPDATE-SHOW-81.jpg
+
+                          return ImageSize(width, width);
+                        }
+                      }
+
+                      // if more letters than digits, that would be weird?
+                      // assuming we got junk like _2klj3l3j23j333j
+                      if (lettersStr.length > 2) {
+                        return ImageSize.zero;
+                      }
+
+                      return ImageSize(width, 0);
                     }
-
-                    // if more letters than digits, that would be weird?
-                    // assuming we got junk like _2klj3l3j23j333j
-                    if (lettersStr.length > 2) {
-                      return ImageSize.zero;
-                    }
-
-                    return ImageSize(width, 0);
                   }
                 }
               }
