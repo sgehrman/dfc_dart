@@ -4,9 +4,7 @@ import 'package:mime/mime.dart';
 // Size is in Flutter, not dart, so we use ImageSize
 class ImageSize {
   const ImageSize(this.width, this.height);
-  const ImageSize.zero()
-      : height = 0,
-        width = 0;
+  static const zero = ImageSize(0, 0);
 
   final int width;
   final int height;
@@ -195,7 +193,11 @@ class UriUtils {
     return null;
   }
 
-  static ImageSize imageSizeFromUri(Uri uri) {
+  static ImageSize imageSizeFromUri(Uri? uri) {
+    if (uri == null) {
+      return ImageSize.zero;
+    }
+
     // example-100x100.jpg
     // example-100x100@2x.jpg
     // example-100w.jpg
@@ -246,6 +248,6 @@ class UriUtils {
       print(err);
     }
 
-    return const ImageSize(0, 0);
+    return ImageSize.zero;
   }
 }
