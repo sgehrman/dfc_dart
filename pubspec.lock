@@ -85,10 +85,10 @@ packages:
     dependency: "direct dev"
     description:
       name: dart_code_metrics
-      sha256: "1dc1fa763b73ed52147bd91b015d81903edc3f227b77b1672fcddba43390ed18"
+      sha256: "3dede3f7abc077a4181ec7445448a289a9ce08e2981e6a4d49a3fb5099d47e1f"
       url: "https://pub.dev"
     source: hosted
-    version: "5.7.5"
+    version: "5.7.6"
   dart_code_metrics_presets:
     dependency: transitive
     description:
@@ -110,7 +110,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: e99fc6a1d200679915d98ce00d7f2c96b6454cbf
+      resolved-ref: "7c34dd506800311825a8af3e881fcdca1af1197f"
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
