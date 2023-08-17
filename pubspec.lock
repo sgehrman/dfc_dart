@@ -53,10 +53,10 @@ packages:
     dependency: transitive
     description:
       name: collection
-      sha256: f092b211a4319e98e5ff58223576de6c2803db36221657b46c82574721240687
+      sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.2"
+    version: "1.18.0"
   convert:
     dependency: transitive
     description:
@@ -110,7 +110,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "44e4685f8052681c07391da4f809173daddf3b21"
+      resolved-ref: cbd372d00d8a51344a65da738ed647579c06533a
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
@@ -206,10 +206,10 @@ packages:
     dependency: transitive
     description:
       name: platform
-      sha256: "4a451831508d7d6ca779f7ac6e212b4023dd5a7d08a27a63da33756410e32b76"
+      sha256: "57c07bf82207aee366dfaa3867b3164e4f03a238a461a11b0e8a3a510d51203d"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.1"
   process:
     dependency: transitive
     description:
