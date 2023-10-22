@@ -13,6 +13,7 @@ dependencies:
 
 dev_dependencies:
   # must include this with dfc_lints. see https://github.com/dart-code-checker/dart-code-metrics/issues/254
-  dart_code_metrics: ^5.7.6
+  dart_code_metrics:
+    git: https://github.com/paulkastel/dart-code-metrics
   dfc_lints:
     git: https://github.com/sgehrman/dfc_lints
