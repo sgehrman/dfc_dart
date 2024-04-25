@@ -25,6 +25,57 @@ class UriUtils {
     return null;
   }
 
+  static bool isEqualTo(String? url1, String? url2) {
+    if (url1 == url2) {
+      return true;
+    }
+
+    // case differences?  /r/UFOB vs. /r/ufob
+    // www.example.com vs. example.com
+    // example.com/ vs example.com
+    // Example.com vs. example.com
+    // https vs HTTPS
+
+    final uri1 = parseUri(url1);
+    final uri2 = parseUri(url1);
+
+    if (uri1 != null && uri2 != null) {
+      // scheme returns lower case letters
+      if (uri1.scheme != uri2.scheme) {
+        return false;
+      }
+
+      // origin returns lower case letters, and port
+      if (uri1.origin != uri2.origin) {
+        // what if we remove www?
+        final one = uri1.origin.replaceAll('www.', '');
+        final two = uri2.origin.replaceAll('www.', '');
+
+        if (one != two) {
+          return false;
+        }
+      }
+
+      // path, convert to lower case and remove trailing slash
+      final p1 = StrUtls.removeEnd(uri1.path.toLowerCase(), '/');
+      final p2 = StrUtls.removeEnd(uri2.path.toLowerCase(), '/');
+
+      if (p1 != p2) {
+        return false;
+      }
+
+      // query string, need to convert lower case? not sure, try this first
+      if (uri1.query != uri2.query) {
+        return false;
+      }
+
+      // got this far so true?
+      return true;
+    }
+
+    return false;
+  }
+
   // Uri.tryParse doesn't return null for ''
   static Uri? parseUri(String? url) {
     if (url != null && url.isNotEmpty) {
