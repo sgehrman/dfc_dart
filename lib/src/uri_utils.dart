@@ -37,7 +37,7 @@ class UriUtils {
     // https vs HTTPS
 
     final uri1 = parseUri(url1);
-    final uri2 = parseUri(url1);
+    final uri2 = parseUri(url2);
 
     if (uri1 != null && uri2 != null) {
       // scheme returns lower case letters
@@ -48,10 +48,10 @@ class UriUtils {
       // origin returns lower case letters, and port
       if (uri1.origin != uri2.origin) {
         // what if we remove www?
-        final one = uri1.origin.replaceAll('www.', '');
-        final two = uri2.origin.replaceAll('www.', '');
+        final o1 = uri1.origin.replaceAll('www.', '');
+        final o2 = uri2.origin.replaceAll('www.', '');
 
-        if (one != two) {
+        if (o1 != o2) {
           return false;
         }
       }
