@@ -8,8 +8,8 @@ environment:
   sdk: ">=3.1.6 <4.0.0"
 
 dependencies:
-  mime: ^1.0.4
-  path: ^1.8.2
+  mime: ^1.0.5
+  path: ^1.9.0
 
 dev_dependencies:
   # must include this with dfc_lints. see https://github.com/dart-code-checker/dart-code-metrics/issues/254
