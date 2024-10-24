@@ -40,19 +40,34 @@ class UriUtils {
     final uri2 = parseUri(url2);
 
     if (uri1 != null && uri2 != null) {
+      // uri seems to convert the case to lower, just do a quick test without any trailing slash
+      final b1 = StrUtls.removeEnd(uri1.toString(), '/');
+      final b2 = StrUtls.removeEnd(uri2.toString(), '/');
+      if (b1 == b2) {
+        return true;
+      }
+
       // scheme returns lower case letters
       if (uri1.scheme != uri2.scheme) {
         return false;
       }
 
       // origin returns lower case letters, and port
-      if (uri1.origin != uri2.origin) {
-        // what if we remove www?
-        final o1 = uri1.origin.replaceAll('www.', '');
-        final o2 = uri2.origin.replaceAll('www.', '');
+      // Origin is only applicable to schemes http and https:
+      // chrome://extensions will crash for example
+      if (uri1.scheme.startsWith('http')) {
+        try {
+          if (uri1.origin != uri2.origin) {
+            // what if we remove www?
+            final o1 = uri1.origin.replaceAll('www.', '');
+            final o2 = uri2.origin.replaceAll('www.', '');
 
-        if (o1 != o2) {
-          return false;
+            if (o1 != o2) {
+              return false;
+            }
+          }
+        } catch (err) {
+          print(err);
         }
       }
 
