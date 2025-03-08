@@ -142,6 +142,18 @@ class UriUtils {
     return false;
   }
 
+  // favIcons from chrome use this url scheme
+  // https://developer.chrome.com/docs/extensions/mv3/favicon/
+  static bool isChromeExtUrl(String? url) {
+    final uri = parseUri(url);
+
+    return isChromeExtUri(uri);
+  }
+
+  static bool isChromeExtUri(Uri? uri) {
+    return uri != null && uri.scheme == 'chrome-extension';
+  }
+
   static bool isIcoUrl(String? url) {
     final uri = parseUri(url);
 
