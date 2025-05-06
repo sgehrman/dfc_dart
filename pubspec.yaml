@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   mime: ^1.0.6
-  path: ^1.9.1
+  path: ^1.9.0
 
 dev_dependencies:
   # must include this with dfc_lints. see https://github.com/dart-code-checker/dart-code-metrics/issues/254
