@@ -7,14 +7,14 @@ class Utls {
   static final Random _random = Random();
 
   static String uniqueFirestoreId() {
-    const int idLength = 20;
-    const String alphabet =
+    const idLength = 20;
+    const alphabet =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    final StringBuffer stringBuffer = StringBuffer();
-    const int maxRandom = alphabet.length;
+    final stringBuffer = StringBuffer();
+    const maxRandom = alphabet.length;
 
-    for (int i = 0; i < idLength; ++i) {
+    for (var i = 0; i < idLength; ++i) {
       stringBuffer.write(alphabet[_random.nextInt(maxRandom)]);
     }
 
@@ -22,15 +22,15 @@ class Utls {
   }
 
   static String uniqueFileName(String name, String directoryPath) {
-    int nameIndex = 1;
-    final String fileName = name;
-    String tryDirName = fileName;
+    var nameIndex = 1;
+    final fileName = name;
+    var tryDirName = fileName;
 
-    String destFile = p.join(directoryPath, tryDirName);
+    var destFile = p.join(directoryPath, tryDirName);
     while (File(destFile).existsSync() || Directory(destFile).existsSync()) {
       // test-1.xyz
-      final String baseName = p.basenameWithoutExtension(fileName);
-      final String extension = p.extension(fileName);
+      final baseName = p.basenameWithoutExtension(fileName);
+      final extension = p.extension(fileName);
 
       tryDirName = '$baseName-$nameIndex$extension';
       destFile = p.join(directoryPath, tryDirName);
@@ -42,11 +42,11 @@ class Utls {
   }
 
   static String uniqueDirName(String name, String directoryPath) {
-    int nameIndex = 1;
-    final String dirName = p.basenameWithoutExtension(name);
-    String tryDirName = dirName;
+    var nameIndex = 1;
+    final dirName = p.basenameWithoutExtension(name);
+    var tryDirName = dirName;
 
-    String destFolder = p.join(directoryPath, tryDirName);
+    var destFolder = p.join(directoryPath, tryDirName);
     while (
         File(destFolder).existsSync() || Directory(destFolder).existsSync()) {
       tryDirName = '$dirName-$nameIndex';

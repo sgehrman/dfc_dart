@@ -300,8 +300,8 @@ class UriUtils {
         final wStr = uri.queryParameters['width'];
         final hStr = uri.queryParameters['height'];
 
-        int w = 0;
-        int h = 0;
+        var w = 0;
+        var h = 0;
 
         if (wStr != null) {
           w = int.tryParse(wStr) ?? 0;
@@ -318,9 +318,9 @@ class UriUtils {
       if (uri.pathSegments.isNotEmpty) {
         final name = uri.pathSegments.last.toLowerCase();
         final len = name.length;
-        bool isUnderscore = false;
+        var isUnderscore = false;
 
-        int markerIndex = name.lastIndexOf('-');
+        var markerIndex = name.lastIndexOf('-');
         if (markerIndex == -1) {
           markerIndex = name.lastIndexOf('_');
           isUnderscore = true;
@@ -336,8 +336,8 @@ class UriUtils {
               // 100x200x
               final sizes = sizeText.split('x');
               if (sizes.length == 2) {
-                final int? width = int.tryParse(sizes.first);
-                final int? height = int.tryParse(sizes.last);
+                final width = int.tryParse(sizes.first);
+                final height = int.tryParse(sizes.last);
 
                 if (width != null && height != null) {
                   return ImageSize(width, height);
@@ -349,7 +349,7 @@ class UriUtils {
                   final lettersStr = StrUtls.lettersOnly(sizeText);
 
                   if (digitStr.isNotEmpty && digitStr.length <= 4) {
-                    final int? width = int.tryParse(digitStr);
+                    final width = int.tryParse(digitStr);
 
                     if (width != null) {
                       if (lettersStr.isEmpty) {

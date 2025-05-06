@@ -2,8 +2,8 @@ import 'dart:convert';
 
 class StrUtls {
   static String printMap(Map<dynamic, dynamic> map) {
-    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    final String prettyprint = encoder.convert(map);
+    const encoder = JsonEncoder.withIndent('  ');
+    final prettyprint = encoder.convert(map);
 
     print(prettyprint);
 
@@ -11,8 +11,8 @@ class StrUtls {
   }
 
   static String printList(List<Map<dynamic, dynamic>> list) {
-    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    final String prettyprint = encoder.convert(list);
+    const encoder = JsonEncoder.withIndent('  ');
+    final prettyprint = encoder.convert(list);
 
     print(prettyprint);
 
@@ -43,7 +43,7 @@ class StrUtls {
   }
 
   static String digitsOnly(String str) {
-    final List<int> digits = [];
+    final digits = <int>[];
 
     final chars = str.codeUnits;
     for (final c in chars) {
@@ -69,7 +69,7 @@ class StrUtls {
   }
 
   static String lettersOnly(String str) {
-    final List<int> letters = [];
+    final letters = <int>[];
 
     final chars = str.codeUnits;
     for (final c in chars) {
