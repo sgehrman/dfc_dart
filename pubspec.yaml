@@ -16,4 +16,6 @@ dev_dependencies:
   dart_code_metrics:
     git: https://github.com/JonasWanke/dart-code-metrics
   dfc_lints:
-    git: https://github.com/sgehrman/dfc_lints
+    git:
+      url: https://github.com/sgehrman/dfc_lints.git
+      ref: '3.27.4'
