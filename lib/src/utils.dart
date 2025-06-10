@@ -1,10 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:crypto/crypto.dart';
 import 'package:path/path.dart' as p;
 
 class Utls {
   static final Random _random = Random();
+
+  // -----------------------------------------------------
 
   static String uniqueFirestoreId() {
     const idLength = 20;
@@ -20,6 +24,8 @@ class Utls {
 
     return stringBuffer.toString();
   }
+
+  // -----------------------------------------------------
 
   static String uniqueFileName(String name, String directoryPath) {
     var nameIndex = 1;
@@ -41,6 +47,8 @@ class Utls {
     return destFile;
   }
 
+  // -----------------------------------------------------
+
   static String uniqueDirName(String name, String directoryPath) {
     var nameIndex = 1;
     final dirName = p.basenameWithoutExtension(name);
@@ -58,6 +66,8 @@ class Utls {
     return destFolder;
   }
 
+  // -----------------------------------------------------
+
   // 4 -> 04,
   static String twoDigits(num n) {
     if (n >= 10 || n <= -10) {
@@ -70,6 +80,8 @@ class Utls {
 
     return '0$n';
   }
+
+  // -----------------------------------------------------
 
   static bool isNotEmpty(dynamic input) {
     if (input == null) {
@@ -94,50 +106,54 @@ class Utls {
     return false;
   }
 
+  // -----------------------------------------------------
+
   static bool isEmpty(dynamic input) {
     return !isNotEmpty(input);
   }
 
-  // removes null value, empty strings, empty lists, empty maps
-  static dynamic removeNulls(dynamic params) {
-    if (params is Map) {
-      final result = <dynamic, dynamic>{};
+  // -----------------------------------------------------
 
-      params.forEach((dynamic key, dynamic value) {
-        final dynamic val = removeNulls(value);
-        if (val != null) {
-          result[key] = val;
-        }
-      });
+  static String stringHash(String input) {
+    final bytes = utf8.encode(input);
 
-      if (isNotEmpty(result)) {
-        return result;
-      }
+    return sha1.convert(bytes).toString();
+  }
 
-      return null;
-    } else if (params is List) {
-      final result = <dynamic>[];
+  // -----------------------------------------------------
 
-      for (final val in params) {
-        final dynamic v = removeNulls(val);
-        if (v != null) {
-          result.add(v);
-        }
-      }
+  static String arrayHash(List<String> inputs) {
+    return stringHash(inputs.join());
+  }
 
-      if (isNotEmpty(result)) {
-        return result;
-      }
+  // -----------------------------------------------------
+  // for JsonSerializable with dates
 
-      return null;
-    } else if (params is String) {
-      if (isNotEmpty(params)) {
-        return params;
-      }
+  static DateTime? dateTimeFromEpochUs(int? us) =>
+      us == null ? null : DateTime.fromMillisecondsSinceEpoch(us);
 
-      return null;
+  static int? dateTimeToEpochUs(DateTime? dateTime) =>
+      dateTime?.millisecondsSinceEpoch;
+
+  // -----------------------------------------------------
+
+  static String keyFromString(String? input) {
+    return stringHash(input ?? 'null');
+  }
+
+  // -----------------------------------------------------
+
+  static bool isNewTab(String url) {
+    // Chrome
+    if (url == 'chrome://newtab/') {
+      return true;
     }
 
-    return params;
+    // Safari & Firefox
+    if (url.endsWith('new_tab_page.html')) {
+      return true;
+    }
+
+    return false;
   }
 }
