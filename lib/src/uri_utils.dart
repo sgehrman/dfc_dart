@@ -386,4 +386,23 @@ class UriUtils {
 
     return ImageSize.zero;
   }
+
+  // ------------------------------------------------------------
+  // removes http(s)://www. from the url
+  // for display purposes only
+
+  static String shortDisplayUrl(String url) {
+    final uri = UriUtils.parseUri(url);
+    if (uri != null) {
+      return shortDisplayUri(uri);
+    }
+
+    return url;
+  }
+
+  static String shortDisplayUri(Uri uri) {
+    final result = uri.toString().replaceFirst('${uri.scheme}://', '');
+
+    return result.replaceFirst('www.', '');
+  }
 }
