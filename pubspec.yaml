@@ -9,8 +9,8 @@ environment:
 
 dependencies:
   crypto: ^3.0.6
-  mime: ^1.0.6
-  path: ^1.9.0
+  mime: ^2.0.0
+  path: ^1.9.1
 
 dev_dependencies:
   # must include this with dfc_lints. see https://github.com/dart-code-checker/dart-code-metrics/issues/254
